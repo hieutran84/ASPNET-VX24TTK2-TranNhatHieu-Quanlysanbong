@@ -1,0 +1,91 @@
+﻿@model TestTemplate.Models.CoSo
+
+@{
+    ViewBag.Title = "Thêm cơ sở";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    TestTemplate.Models.QLDSEntities db = new TestTemplate.Models.QLDSEntities();
+}
+
+<h2>Thêm</h2>
+
+@using (Html.BeginForm("ThemMoi","CoSo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Mã cơ sở</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MaCS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MaCS, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Tên cơ sở</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenCS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenCS, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Hình ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="FileAnh" />
+            @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Địa chỉ</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Link google maps</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LinkMap, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LinkMap, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-10 " style="margin-top: 10px">Mức giá</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MucGia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MucGia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-md-10" style="margin-top: 10px">Nhập loại sân</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MaLoaiCS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MaLoaiCS, "", new { @class = "text-danger" })
+            <!-- Chú thích hướng dẫn nhập liệu -->
+            <small class="form-text text-muted">
+                Nhập <strong>bongDa</strong> nếu là sân Bóng Đá<br>
+                Nhập <strong>bongRo</strong> nếu là sân Bóng Rổ<br>
+                Nhập <strong>cauLong</strong> nếu là sân Cầu Lông<br>
+                Nhập <strong>quanVot</strong> nếu là sân Quần Vợt
+            </small>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
